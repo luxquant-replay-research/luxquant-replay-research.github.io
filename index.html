@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:,">
+<meta name="description" content="LuxQuant signal replay: published claims compared with an independent 1-minute candle replay across 1, 3, 7 and 30 days.">
+<title>Signal Replay · 1/3/7/30 days · LuxQuant research</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <div class="brand">Real <span>Replay</span> Market</div>
+  <div class="nav-links">
+    <a href="index.html" class="on">Overview</a>
+    <a href="1d.html" class="">1D</a>
+    <a href="3d.html" class="">3D</a>
+    <a href="7d.html" class="">7D</a>
+    <a href="30d.html" class="">30D</a>
+    <a href="conclusion.html" class="">Conclusion</a>
+  </div>
+</div></nav>
+<div class="wrap">
+<header class="hero">
+    <div class="eyebrow"><span class="rule"></span>LuxQuant research<span>·</span>claim vs Real Replay Market</div>
+    <h1>Signal Replay — 1, 3, 7 and 30 Days</h1>
+    <p class="lede">One snapshot (<b>2026-10-19 18:15 UTC</b>), four windows. Every published signal is replayed on Binance
+    USD-M 1-minute candles with the same entry and <b>stop1</b>, then graded against the provider’s claim.
+    Each window page keeps the full ledger and five chart views per signal. <b>Not trading advice.</b></p>
+    <ul class="chips">
+      <li class="chip">Snapshot <b>2026-10-19 18:15 UTC</b></li>
+      <li class="chip">30-day signals <b>2362</b></li>
+      <li class="chip">Resolved <b>2210</b></li>
+      <li class="chip">Conflicts <b>662</b></li>
+      <li class="chip">Time zone <b>UTC+7</b></li>
+    </ul>
+  </header>
+  <section class="models" aria-label="Window comparison">
+    <h2>Windows <span>all sliced from the same snapshot · net R over resolved signals</span></h2>
+    <table class="win-table">
+      <thead><tr><th>Window</th><th class="num">Signals</th><th class="num">Resolved</th><th class="num">Claim net</th>
+      <th class="num">Real net</th><th class="num">Real − Claim</th><th class="num">Claim WR</th><th class="num">Real WR</th>
+      <th class="num">Conflict</th><th class="num">Partial</th></tr></thead>
+      <tbody><tr><td><b><a href="1d.html">1-Day</a></b></td><td class="num">35</td><td class="num">10</td><td class="num">+29.24R</td><td class="num neg">-10.00R</td><td class="num neg">-39.24R</td><td class="num">85.7%</td><td class="num">0.0%</td><td class="num">2</td><td class="num">4</td></tr><tr><td><b><a href="3d.html">3-Day</a></b></td><td class="num">97</td><td class="num">63</td><td class="num">+88.30R</td><td class="num neg">-37.31R</td><td class="num neg">-125.61R</td><td class="num">78.9%</td><td class="num">7.9%</td><td class="num">16</td><td class="num">29</td></tr><tr><td><b><a href="7d.html">7-Day</a></b></td><td class="num">251</td><td class="num">198</td><td class="num">+216.32R</td><td class="num neg">-115.76R</td><td class="num neg">-332.08R</td><td class="num">71.7%</td><td class="num">8.1%</td><td class="num">50</td><td class="num">85</td></tr><tr><td><b><a href="30d.html">30-Day</a></b></td><td class="num">2362</td><td class="num">2210</td><td class="num">+3243.62R</td><td class="num neg">-770.68R</td><td class="num neg">-4014.30R</td><td class="num">83.4%</td><td class="num">12.3%</td><td class="num">662</td><td class="num">954</td></tr></tbody>
+    </table>
+  </section>
+  <section class="method" aria-label="Method">
+    <h2>How to read this</h2>
+    <p><b>Claim</b> is not a price record. It is the exit implied by the provider’s published status
+    (<code>tp1…tp3</code>, <code>closed_win</code>, <code>closed_loss</code>). A status that says a target was
+    <i>touched</i> does not mean the position was closed there, nor that it stayed profitable afterwards.</p>
+    <p><b>Real Replay Market</b> re-reads the actual 1-minute path from publication to the present: entry is filled only when
+    price touches the published entry, the stop stays at <b>stop1</b> unless a different model is chosen, and the trade ends at
+    the stop or the final target. Position boxes on the charts start one minute after publication (assumed execution delay).</p>
+    <p><b>Why the models differ.</b> The same candles are replayed under four stop rules:
+    hold to final, move to entry after TP1, move to TP1 after TP1, and move SL to TP2 after TP1. The spread between them is the
+    value of stop management, not a different set of trades.</p>
+    <p><b>Limits.</b> Intrabar order is unknown. When a candle touches both the stop and a target the replay refuses to guess and
+    marks the signal ambiguous or unavailable. Symbols that are delisted, renamed, or never listed on Binance USD-M are excluded
+    from the replay side and shown honestly. Replayed R includes Binance USD-M maker 0.02% entry and taker 0.05% exit fees;
+    funding is not applied. Claim R is a gross price ratio and therefore reads slightly higher on the same target. This is research,
+    not trading advice, and a past touch is not evidence of a profitable trade.</p>
+  </section><footer class="notes">
+  <p><b>Claim</b> = the exit implied by the provider’s published status (exit at the touched target, or −1R if reported loss).
+  <b>Real Replay Market</b> = the same signal replayed on Binance USD-M 1-minute candles: entry on touch, stop stays at <b>SL1</b>,
+  position held <b>to the final target</b> unless a different model is selected.</p>
+  <p><b>Costs.</b> Every replayed R uses the app’s Binance USD-M cost model: <b>maker 0.02%</b> on the limit entry and
+  <b>taker 0.05%</b> on each exit; funding is not applied. <b>Claim R</b> is the gross price ratio with no costs, so on the same
+  target it is slightly higher than the replayed R (for example a full-target trade can read +4.03R gross versus +3.91R after fees).</p>
+  <p><b>Verdict</b> compares the claim with the observed path: CONFLICT (target claimed but stop hit first, or loss claimed
+  although a target was reached), PARTIAL (target reached, then stopped), MATCH (claim matches), OPEN (unresolved).</p>
+  <p>The R columns are the same candles and entries under different stop management:
+  <b>hold to final</b> keeps the stop at SL1; <b>move to entry after TP1</b> sets the stop to the entry (breakeven);
+  <b>move to tp1 after tp1</b> sets the stop to TP1; <b>move sl to tp2 after tp1</b> sets the stop to TP2 (it only binds
+  once TP2 is actually reached). A “—” means the trade is still open. The <b>Exit-management scenarios</b> cards pair each
+  setting with the claim measured on the <b>same signals that resolved under that setting</b>, so the claim and the replay
+  there are directly comparable; counts can differ slightly between cards because a setting may resolve a signal that
+  another leaves open.</p>
+  <p>In the chart view the entry is drawn as a position box: <b>green = entry → TP4</b> and <b>red = entry → SL1</b>;
+  the <b>model chips</b> show/hide each scenario. Boxes start on the first candle <b>one minute after publication</b>
+  (assumed 1-minute execution delay).</p>
+  <p>Charts use TradingView Lightweight Charts with public Binance USD-M Futures candles. Entry, TP1–TP4 and stop1 are drawn as levels;
+  markers show the entry touch and each exit. This is independent research, not trading advice.</p>
+  <p class="foot">Real Replay Market · snapshot 2026-10-19 18:15 UTC · overview window · 2362 signals</p>
+</footer>
+</div>
+</body>
+</html>
