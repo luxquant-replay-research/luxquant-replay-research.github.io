@@ -13,8 +13,7 @@ The published replay applies four stop rules: hold to final, move to entry after
 TP1, move to TP1 after TP1, and move SL to TP1 after TP2 (the stop moves to TP1
 only after TP2 is reached).
 
-> **Correction (2026-10-20):** the fourth model was previously computed and
-> labeled as “move SL to TP2 after TP1”. The data and UI have been corrected and
-> regenerated.
+> **Correction (2026-10-20):** the fourth model previously used an incorrect
+> stop placement. The data and UI have been corrected and regenerated.
 
 Research only — not trading advice.
