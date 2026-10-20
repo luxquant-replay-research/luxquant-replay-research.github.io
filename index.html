@@ -54,7 +54,7 @@
     price touches the published entry, the stop stays at <b>stop1</b> unless a different model is chosen, and the trade ends at
     the stop or the final target. Position boxes on the charts start one minute after publication (assumed execution delay).</p>
     <p><b>Why the models differ.</b> The same candles are replayed under four stop rules:
-    hold to final, move to entry after TP1, move to TP1 after TP1, and move SL to TP2 after TP1. The spread between them is the
+    hold to final, move to entry after TP1, move to TP1 after TP1, and move SL to TP1 after TP2. The spread between them is the
     value of stop management, not a different set of trades.</p>
     <p><b>Limits.</b> Intrabar order is unknown. When a candle touches both the stop and a target the replay refuses to guess and
     marks the signal ambiguous or unavailable. Symbols that are delisted, renamed, or never listed on Binance USD-M are excluded
@@ -72,8 +72,8 @@
   although a target was reached), PARTIAL (target reached, then stopped), MATCH (claim matches), OPEN (unresolved).</p>
   <p>The R columns are the same candles and entries under different stop management:
   <b>hold to final</b> keeps the stop at SL1; <b>move to entry after TP1</b> sets the stop to the entry (breakeven);
-  <b>move to tp1 after tp1</b> sets the stop to TP1; <b>move sl to tp2 after tp1</b> sets the stop to TP2 (it only binds
-  once TP2 is actually reached). A “—” means the trade is still open. The <b>Exit-management scenarios</b> cards pair each
+  <b>move to tp1 after tp1</b> sets the stop to TP1; <b>move sl to tp1 after tp2</b> sets the stop to TP1 only
+  once TP2 is actually reached, otherwise the stop stays at SL1. A “—” means the trade is still open. The <b>Exit-management scenarios</b> cards pair each
   setting with the claim measured on the <b>same signals that resolved under that setting</b>, so the claim and the replay
   there are directly comparable; counts can differ slightly between cards because a setting may resolve a signal that
   another leaves open.</p>

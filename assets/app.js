@@ -11,7 +11,7 @@
     { key: "hold", r: "r_hold", exit: "hold", short: "Hold" },
     { key: "entry", r: "r_entry", exit: "entry", short: "Entry" },
     { key: "tp1", r: "r_tp1", exit: "tp1", short: "TP1" },
-    { key: "tp2", r: "r_tp2", exit: "tp2", short: "TP2" }
+    { key: "tp2", r: "r_tp2", exit: "tp2", short: "TP2→TP1" }
   ];
   var UNRESOLVED = ["OPEN", "OPEN/ACTIVE", "WAITING_ENTRY", "AMBIGUOUS", "NO_ENTRY", "NEEDS_REVIEW", "PRICE_UNAVAILABLE"];
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
