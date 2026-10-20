@@ -387,6 +387,18 @@
     });
     chips.innerHTML = out.join("");
   }
+  function loadCandles(sig) {
+    if (sig.candles && sig.candles.length) return Promise.resolve(sig);
+    var url = sig.chart || ("data/charts/" + sig.core.signal_id + ".json");
+    return fetch(url, { cache: "force-cache" }).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    }).then(function (data) {
+      sig.candles = data.candles || [];
+      sig.interval = data.interval || "1m";
+      return sig;
+    });
+  }
   function open(idx) {
     var sig = SIG[idx];
     if (!sig) return;
@@ -405,8 +417,19 @@
     modal.setAttribute("aria-hidden", "false");
     hidden = {};
     document.querySelectorAll("#modelToggle .mtog").forEach(function (b) { b.setAttribute("aria-pressed", "true"); });
-    renderPanels(sig);
     renderTimeline(sig);
+    document.querySelectorAll(".chart-box").forEach(function (box) {
+      box.innerHTML = '<div style="padding:20px;color:#8e887a">Loading 1-minute candles\u2026</div>';
+    });
+    loadCandles(sig).then(function () {
+      if (current !== idx || !modal.classList.contains("on")) return;
+      renderPanels(sig);
+    }).catch(function (err) {
+      if (current !== idx || !modal.classList.contains("on")) return;
+      document.querySelectorAll(".chart-box").forEach(function (box) {
+        box.innerHTML = '<div style="padding:20px;color:#ae2a21">Could not load 1-minute candles: ' + esc(err.message) + "</div>";
+      });
+    });
   }
 
   function wireTable() {

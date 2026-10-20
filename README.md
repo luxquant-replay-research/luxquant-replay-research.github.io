@@ -16,4 +16,8 @@ only after TP2 is reached).
 > **Correction (2026-10-20):** the fourth model previously used an incorrect
 > stop placement. The data and UI have been corrected and regenerated.
 
+> **Chart update (2026-10-20):** every chart now uses **1-minute** candles
+> instead of the previous 5m/15m/1h snapshots. Candle files are loaded only
+> when a chart modal opens, so the ledger JSON stays small.
+
 Research only — not trading advice.
